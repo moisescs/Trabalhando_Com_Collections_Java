@@ -2,6 +2,7 @@ package br.com.dio.collections.list;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -19,14 +20,32 @@ public class ExemploOrdenacaoList {
         }};
 
         System.out.println("---\tOderm de Inserção\t ---");
+        // Para imprimir os valores dos objetos é necessário implementar os ToString, caso contrário vai imprimir apenas um endereço de memória.
         System.out.println(meusGatos);
 
-        System.out.println("---\tOderm Aleatória\t ---");        
+        System.out.println("---\tOderm Aleatória\t ---");
+        // O Collections.shuffle(meusGatos) serve para miturar/ embaralhar os intens na lista;       
         Collections.shuffle(meusGatos);
         System.out.println(meusGatos);
 
-        System.out.println("---\tOderm Natural\t ---"); 
+        System.out.println("---\tOderm Natural\t ---");  
         Collections.sort(meusGatos);      
+        System.out.println(meusGatos);
+
+        System.out.println("---\tOderm Por Idade\t ---"); 
+        // ComparatorIdade é a classe que implementa a inteface Comparator<Gato> onde tem a logica de comparação por idade;
+        Collections.sort(meusGatos, new ComparatorIdade());
+       // meusGatos.sort(new ComparatorIdade());
+        System.out.println(meusGatos);
+
+
+        System.out.println("---\tOderm Por Cor\t ---"); 
+        Collections.sort(meusGatos, new ComparatorCor());
+        //meusGatos.sort(new ComparatorCor());
+        System.out.println(meusGatos);
+
+        System.out.println("---\tOderm Por Cor/Idade/Nome\t ---"); 
+        meusGatos.sort(new ComparatorNomeCorIdade());
         System.out.println(meusGatos);
 
         
@@ -109,4 +128,39 @@ class Gato implements Comparable<Gato> {
     public int compareTo(Gato gato) {
         return this.getNome().compareToIgnoreCase(gato.getNome());
     }
+}
+
+
+class ComparatorIdade implements Comparator<Gato> {
+
+    @Override
+    public int compare(Gato g1, Gato g2) {
+        // TODO Auto-generated method stub
+        return Integer.compare(g1.getIdade(), g2.getIdade());
+    }
+    
+}
+
+class ComparatorCor implements Comparator<Gato>{
+
+    @Override
+    public int compare(Gato g1, Gato g2) {
+        return g1.getCor().compareToIgnoreCase(g2.getCor());
+    }
+    
+}
+
+class ComparatorNomeCorIdade implements Comparator<Gato>{
+
+    @Override
+    public int compare(Gato g1, Gato g2) {
+        int nome = g1.getNome().compareToIgnoreCase(g2.getNome());
+        if(nome != 0) return nome;
+
+        int cor = g1.getCor().compareToIgnoreCase(g2.getCor());
+        if(cor != 0) return cor;
+
+        return Integer.compare(g1.getIdade(), g2.getIdade());
+    }
+
 }
