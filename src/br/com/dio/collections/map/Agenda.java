@@ -1,12 +1,13 @@
 package br.com.dio.collections.map;
 import java.util.Map;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.security.KeyStore.Entry;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
+
 
 /*Dadas as seguintes informações  de id e contato, crie um dicionário e
 ordene este dicionário exibindo (Nome id - Nome contato);
@@ -39,16 +40,14 @@ public class Agenda {
             System.out.println(entry.getKey() + " - " + entry.getValue().getNome());
         }
 
-        System.out.println("\n--\tOrdem id\t--");
-        Map<Integer, Contato> agendaOrdenadaPorId = new TreeMap<>(agenda);
-        System.out.println(agendaOrdenadaPorIsercao);
-
-        for (Map.Entry<Integer, Contato> entry : agendaOrdenadaPorId.entrySet()) {
+        System.out.println("--\tOrdem id\t--");
+        Map<Integer, Contato> agenda2 = new TreeMap<>(agenda);
+        System.out.println(agenda2);
+        for (Map.Entry<Integer, Contato> entry: agenda2.entrySet()) {
             System.out.println(entry.getKey() + " - " + entry.getValue().getNome());
         }
 
-        System.out.println("\n--\tOrdem número telefone\t--");
-       
+        System.out.println("--\tOrdem número telefone\t--");
         //precisamos organizar os valores. Logo:
         Set<Map.Entry<Integer, Contato>> set = new TreeSet<>(new ComparatorOrdemNumerica());
         set.addAll(agenda.entrySet());
@@ -64,7 +63,6 @@ public class Agenda {
         for (Map.Entry<Integer, Contato> entry: set1) {
             System.out.println(entry.getKey() + " - " + entry.getValue().getNome());
         }
-
     }
 }
 
