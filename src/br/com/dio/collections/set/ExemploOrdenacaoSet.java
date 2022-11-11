@@ -1,10 +1,7 @@
 package br.com.dio.collections.set;
 
-import java.lang.reflect.Constructor;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
-import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -55,9 +52,6 @@ public class ExemploOrdenacaoSet {
 //--------------------------------------------------------------------------------------
 
         System.out.println("--\tOrdem TempoEpisódio\t--");
-
-
-
 
     }
 }
