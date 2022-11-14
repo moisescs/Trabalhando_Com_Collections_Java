@@ -1,4 +1,4 @@
-package br.com.dio.collections.stream;
+package br.com.dio.collections.streamAPI;
 
 import java.util.*;
 import java.util.Map.Entry;
